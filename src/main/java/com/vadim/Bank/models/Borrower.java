@@ -1,14 +1,17 @@
 package com.vadim.Bank.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.Set;
 
 @Entity
-public class Borrower {
+public class Borrower implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // автоматическая работа с индентификаторами
@@ -20,9 +23,17 @@ public class Borrower {
     private double creditSize; // размер кредита в рублях
     private double creditPercent; // процентная ставка
 
+    @Size(min = 2, message = "Не меньше 5 знаков")
+    private String password;
+    @Size(min = 2, message = "Не маньше 5 знаков")
+    private String username;
+    @Transient
+    private String passwordConfirm; //не имеет отображение в БД
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles; //роли
+
     public Borrower(){}
 
-    //тестовый конструктор (не всё инициализируется)
     public Borrower(String name, String firstName, String surname, int age, double creditSize, double creditPercent) {
         this.name = name;
         this.firstName = firstName;
@@ -33,6 +44,65 @@ public class Borrower {
         this.creditSize = creditSize;
         this.creditPercent = creditPercent;
 
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
