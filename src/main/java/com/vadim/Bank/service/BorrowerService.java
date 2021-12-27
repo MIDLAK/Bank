@@ -1,5 +1,4 @@
 package com.vadim.Bank.service;
-
 import com.vadim.Bank.models.Borrower;
 import com.vadim.Bank.models.BorrowerRepository;
 import com.vadim.Bank.models.Role;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collections;

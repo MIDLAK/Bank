@@ -1,5 +1,4 @@
 package com.vadim.Bank.controllers;
-
 import com.vadim.Bank.models.BorrowerRepository;
 import com.vadim.Bank.service.BorrowerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,15 @@ public class MainController {
     @GetMapping("/calculator")
     public String calculator(Model model) {
         model.addAttribute("namePr", "Vabank");
-        model.addAttribute("title", "Про нас");
 
         return "calculator";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model){
+        model.addAttribute("namePr", "Vabank");
+
+        return "about";
     }
 
 

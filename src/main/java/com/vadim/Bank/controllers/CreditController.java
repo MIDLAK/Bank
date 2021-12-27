@@ -1,5 +1,4 @@
 package com.vadim.Bank.controllers;
-
 import com.vadim.Bank.models.Borrower;
 import com.vadim.Bank.models.BorrowerRepository;
 import com.vadim.Bank.service.BorrowerService;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.GregorianCalendar;
 
 @Controller

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">"</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js">
+
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container px-4 py-5" id="hanging-icons">
+    <h4>ГРАФИК ВЫПЛАТ</h4>
+    <br>
+    <table class="table">
+        <tr>
+            <th>Дата</th>
+            <th>Платёж</th>
+            <th>В погашение процентов</th>
+            <th>В погашение долга</th>
+            <th>Остаток</th>
+        </tr>
+        <tr th:each="pay : ${paytable}">
+            <td th:utext="${pay.date}"></td>
+            <td th:utext="${pay.pay}"></td>
+            <td th:utext="${pay.repaymentPercent}"></td>
+            <td th:utext="${pay.amortization}"></td>
+            <td th:utext="${pay.loanBalance}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
