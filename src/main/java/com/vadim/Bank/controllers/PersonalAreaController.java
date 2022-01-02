@@ -32,7 +32,10 @@ public class PersonalAreaController {
         ArrayList<Payment> paytable;
         paytable = creditCalculator.annuityPaymentsTable(); //график платежей (аннуитет)
         //paytable = creditCalculator.differentiatedPayments(); //график платежей (дифференцированный)
+        double overpayment = creditCalculator.getOverpayment();
         model.addAttribute("paytable", paytable);
+        model.addAttribute("borrower", borrower);
+        model.addAttribute("overpayment", overpayment);
 
         return "personal_area";
     }

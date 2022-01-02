@@ -9,8 +9,7 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-
-<div class="container px-4 py-5" id="hanging-icons">
+<div class="container px-4 py-5" id="hanging-icons" th:if="${borrower.creditSize}">
     <h4>ГРАФИК ВЫПЛАТ</h4>
     <br>
     <table class="table">
@@ -29,6 +28,10 @@
             <td th:utext="${pay.loanBalance}"></td>
         </tr>
     </table>
+    <p th:text="'Переплата: ' + ${overpayment}"></p>
+</div>
+<div class="container px-4 py-5" id="hanging-icons">
+    <a href="\logout">Выйти из учётной записи</a>
 </div>
 </body>
 </html>
