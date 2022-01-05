@@ -9,11 +9,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BorrowerService implements UserDetailsService {
@@ -21,11 +24,13 @@ public class BorrowerService implements UserDetailsService {
     @PersistenceContext
     private EntityManager em;
     @Autowired
-    BorrowerRepository borrowerRepository;
+    private BorrowerRepository borrowerRepository;
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -57,8 +62,31 @@ public class BorrowerService implements UserDetailsService {
 
         borrower.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         borrower.setPassword(bCryptPasswordEncoder.encode(borrower.getPassword()));
+        borrower.setActivationCode(UUID.randomUUID().toString());
         borrowerRepository.save(borrower);
+
+        if (!StringUtils.isEmpty(borrower.getUsername())){
+            String message = String.format(
+                    "Здравствуйте!\n" +
+                            "Приветствуем Вас в Vabank! Пожалуйста, перейдите по ссылке, для подтверждения вашего почтового ящика: https://localhost:8080/activate/%s",
+                    borrower.getActivationCode()
+            );
+           mailSender.send(borrower.getUsername(), "Код активации", message);
+        }
+
         return true;
     }
 
+    public boolean activateUser(String code) {
+        Borrower borrower = borrowerRepository.findByActivationCode(code);
+
+        if (borrower ==  null){
+            return false;
+        }
+
+        borrower.setActivationCode(null);
+        borrowerRepository.save(borrower);
+
+        return true;
+    }
 }

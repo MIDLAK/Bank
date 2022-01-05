@@ -22,8 +22,9 @@ public class Borrower implements UserDetails {
     private Calendar creditIssueDate; // дата выдачи кредита
     private double creditSize; // размер кредита в рублях
     private double creditPercent; // процентная ставка
-    int term; // срок кредитования в месяцах
-    double bankAccount; // сумма на счету клиента в банке
+    private int term; // срок кредитования в месяцах
+    private double bankAccount; // сумма на счету клиента в банке
+    private String activationCode; // код подтверждения с email
 
     @Size(min = 2, message = "Не меньше 5 знаков")
     private String password;
@@ -189,5 +190,13 @@ public class Borrower implements UserDetails {
 
     public void setTerm(int term) {
         this.term = term;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }

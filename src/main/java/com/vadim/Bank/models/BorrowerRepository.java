@@ -2,5 +2,7 @@ package com.vadim.Bank.models;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BorrowerRepository extends JpaRepository<Borrower, Long> {
-    Borrower findByUsername(String username); //тело метода определяет сам JpaRepository
+    /*тела методов определяет сам JpaRepository*/
+    Borrower findByUsername(String username);
+    Borrower findByActivationCode(String code);
 }
