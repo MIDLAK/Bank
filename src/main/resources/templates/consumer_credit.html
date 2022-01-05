@@ -13,11 +13,12 @@
 <div class="container mt-5 mb-5">
     <h2>Заполните все поля</h2><br>
 <form th:action="@{/consumer-credit}" method="post">
-    <input type="text" name="firstname" placeholder="Введите вашу фамилию" class="form-control"><br>
-    <input type="text" name="name" placeholder="Введите ваше имя" class="form-control"><br>
-    <input type="text" name="surname" placeholder="Введите ваше отчество" class="form-control"><br>
-    <input type="number" name="age" placeholder="Укажите ваш возраст в виде целого (например 19)" class="form-control"><br>
-    <input type="number" name="credit_size" placeholder="Укажите размер кредита в рублях" class="form-control"><br>
+    <input type="text" name="firstname" placeholder="Введите вашу фамилию" class="form-control" required><br>
+    <input type="text" name="name" placeholder="Введите ваше имя" class="form-control" required><br>
+    <input type="text" name="surname" placeholder="Введите ваше отчество" class="form-control" required><br>
+    <input type="number" name="age" placeholder="Укажите ваш возраст в виде целого (например 19)" class="form-control" required><br>
+    <input type="number" name="credit_size" placeholder="Укажите размер кредита в рублях" class="form-control" required><br>
+    <input type="number" name="credit_term" placeholder="Укажите срок кредитования в месяцах" class="form-control" required><br>
     <button type="submit" class="btn btn-success">Подтвердить</button>
 </form>
 </div>

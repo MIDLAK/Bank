@@ -85,8 +85,8 @@ public class CreditCalculator {
                 rest = rest - mpReal;
                 t--;
             }
+            this.overpayment = CreditCalculator.round(overpayment, 2);
         }
-        this.overpayment = CreditCalculator.round(overpayment, 2);
         return payments;
     }
 

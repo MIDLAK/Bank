@@ -12,7 +12,7 @@
 <div class="container mt-5 mb-5">
   <h2>Регистрация</h2><br>
   <form th:action="@{/registration}" method="post">
-    <input type="text" name="username"  placeholder="Придумайте имя пользователя (более 5 символов)" class="form-control"><br>
+    <input type="email" name="username"  placeholder="Введите ваш email" class="form-control"><br>
     <input type="text" name="password" placeholder="Придумайте пароль (более 5 символов)" class="form-control"><br>
     <button type="submit"  class="btn btn-success">Зарегестрироваться</button>
     <a href="/login">Вход</a>

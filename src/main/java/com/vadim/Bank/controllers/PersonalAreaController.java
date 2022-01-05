@@ -28,10 +28,10 @@ public class PersonalAreaController {
         String username = auth.getName(); //username авторизированного пользователя
         Borrower borrower = (Borrower) borrowerService.loadUserByUsername(username);
 
-        CreditCalculator creditCalculator = new CreditCalculator(borrower.getCreditSize(), 12, borrower.getCreditPercent(), borrower.getCreditIssueDate());
+        CreditCalculator creditCalculator = new CreditCalculator(borrower.getCreditSize(), borrower.getTerm(), borrower.getCreditPercent(), borrower.getCreditIssueDate());
         ArrayList<Payment> paytable;
-        paytable = creditCalculator.annuityPaymentsTable(); //график платежей (аннуитет)
-        //paytable = creditCalculator.differentiatedPayments(); //график платежей (дифференцированный)
+        //paytable = creditCalculator.annuityPaymentsTable(); //график платежей (аннуитет)
+        paytable = creditCalculator.differentiatedPayments(); //график платежей (дифференцированный)
         double overpayment = creditCalculator.getOverpayment();
         model.addAttribute("paytable", paytable);
         model.addAttribute("borrower", borrower);

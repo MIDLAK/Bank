@@ -9,6 +9,9 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
+<div class="container px-4 py-5" id="hanging-icons">
+    <button>Пополнить счёт</button>
+</div>
 <div class="container px-4 py-5" id="hanging-icons" th:if="${borrower.creditSize}">
     <h4>ГРАФИК ВЫПЛАТ</h4>
     <br>

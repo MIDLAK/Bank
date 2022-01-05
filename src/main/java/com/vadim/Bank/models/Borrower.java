@@ -1,7 +1,9 @@
 package com.vadim.Bank.models;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
 import java.util.Collection;
@@ -20,10 +22,12 @@ public class Borrower implements UserDetails {
     private Calendar creditIssueDate; // дата выдачи кредита
     private double creditSize; // размер кредита в рублях
     private double creditPercent; // процентная ставка
+    int term; // срок кредитования в месяцах
+    double bankAccount; // сумма на счету клиента в банке
 
     @Size(min = 2, message = "Не меньше 5 знаков")
     private String password;
-    @Size(min = 2, message = "Не маньше 5 знаков")
+    @Email(message = "Ваш email")
     private String username;
     @Transient
     private String passwordConfirm; //не имеет отображение в БД
@@ -42,6 +46,18 @@ public class Borrower implements UserDetails {
         this.creditSize = creditSize;
         this.creditPercent = creditPercent;
 
+    }
+
+    public Borrower(String name, String firstName, String surname, int age, double creditSize, double creditPercent, int term) {
+        this.name = name;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.age = age;
+
+        creditIssueDate = new GregorianCalendar();
+        this.creditSize = creditSize;
+        this.creditPercent = creditPercent;
+        this.term = term;
     }
 
     @Override
@@ -165,5 +181,13 @@ public class Borrower implements UserDetails {
 
     public void setCreditPercent(double creditPercent) {
         this.creditPercent = creditPercent;
+    }
+
+    public int getTerm() {
+        return term;
+    }
+
+    public void setTerm(int term) {
+        this.term = term;
     }
 }

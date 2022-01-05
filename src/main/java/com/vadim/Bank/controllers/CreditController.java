@@ -23,7 +23,7 @@ public class CreditController {
     @PostMapping("/consumer-credit")
     public String consumerAdd(@ModelAttribute("firstname") String firstname, @ModelAttribute("name") String name,
                               @ModelAttribute("surname") String surname, @ModelAttribute("age") double age,
-                              @ModelAttribute("credit_size") double creditSize, Model model) {
+                              @ModelAttribute("credit_size") double creditSize, @ModelAttribute("credit_term") double term, Model model) {
 
         model.addAttribute("title", "Главная страница");
         model.addAttribute("namePr", "Vabank");
@@ -34,13 +34,14 @@ public class CreditController {
         Borrower borrower = (Borrower) borrowerService.loadUserByUsername(username);
 
         if (borrower != null) {
-            borrower.setCreditPercent(5.0);
+            borrower.setCreditPercent(5.9);
             borrower.setCreditSize(creditSize);
             borrower.setAge((int) age);
             borrower.setCreditIssueDate(new GregorianCalendar());
             borrower.setName(name);
             borrower.setFirstName(firstname);
             borrower.setSurname(surname);
+            borrower.setTerm((int) term);
 
             borrowerRepository.save(borrower);
 
