@@ -199,4 +199,12 @@ public class Borrower implements UserDetails {
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
+
+    public double getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(double bankAccount) {
+        this.bankAccount = bankAccount;
+    }
 }
