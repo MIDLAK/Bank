@@ -5,16 +5,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js">
-
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
+
+<!--Счёт-->
 <div class="container px-4 py-5" id="hanging-icons">
     <form th:action="@{/refill}" method="post">
         <h4>ПОПОЛНИТЬ СЧЁТ</h4>
         <br>
-        <input type="number" step="0.01" min="1" max="100000" name="transfer_amount" placeholder="Сумма пополнения" class="form-control"><br>
+        <input type="number" step="0.01" min="1" max="500000" name="transfer_amount" placeholder="Сумма пополнения"
+               class="form-control"><br>
         <button type="submit" class="btn btn-success">Пополнить</button>
+    </form>
+</div>
+
+<div class="container px-4 py-5" id="hanging-icons">
+    <form th:action="@{/withdraw}" method="post">
+        <h4>СНЯТЬ СО СЧЁТА</h4>
+        <br>
+        <input type="number" step="0.01" min="1" max="500000" name="transfer_amount" placeholder="Сумма снятия"
+               class="form-control"><br>
+        <button type="submit" class="btn btn-success">Снять</button>
     </form>
 </div>
 
@@ -24,6 +36,7 @@
     <p th:utext="${borrower.getBankAccount()}"></p>
 </div>
 
+<!--График выплат-->
 <div class="container px-4 py-5" id="hanging-icons" th:if="${borrower.creditSize}">
     <h4>ГРАФИК ВЫПЛАТ ПО КРЕДИТУ</h4>
     <br>
@@ -45,6 +58,8 @@
     </table>
     <p th:text="'Переплата: ' + ${overpayment}"></p>
 </div>
+
+<!--Выход из учётной записи-->
 <div class="container px-4 py-5" id="hanging-icons">
     <a href="\logout">Выйти из учётной записи</a>
 </div>

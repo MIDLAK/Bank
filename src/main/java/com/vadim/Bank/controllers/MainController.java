@@ -1,4 +1,5 @@
 package com.vadim.Bank.controllers;
+
 import com.vadim.Bank.models.BorrowerRepository;
 import com.vadim.Bank.service.BorrowerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
     @Autowired
     private BorrowerRepository borrowerRepository;
     @Autowired
@@ -36,12 +36,4 @@ public class MainController {
 
         return "about";
     }
-
-
-
-
-
-
-
-
 }

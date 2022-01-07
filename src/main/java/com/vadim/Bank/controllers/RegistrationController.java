@@ -1,4 +1,5 @@
 package com.vadim.Bank.controllers;
+
 import com.vadim.Bank.models.Borrower;
 import com.vadim.Bank.service.BorrowerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegistrationController {
-
     @Autowired
     private BorrowerService borrowerService;
 
@@ -24,7 +24,6 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("username") String username, @ModelAttribute("password") String password/*, BindingResult bindingResult*/, Model model) {
-
         Borrower borrower = new Borrower();
         borrower.setPassword(password);
         borrower.setUsername(username);

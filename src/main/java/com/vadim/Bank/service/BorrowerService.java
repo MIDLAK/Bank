@@ -1,4 +1,5 @@
 package com.vadim.Bank.service;
+
 import com.vadim.Bank.models.Borrower;
 import com.vadim.Bank.models.BorrowerRepository;
 import com.vadim.Bank.models.Role;
@@ -10,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collections;
@@ -20,7 +20,6 @@ import java.util.UUID;
 
 @Service
 public class BorrowerService implements UserDetailsService {
-
     @PersistenceContext
     private EntityManager em;
     @Autowired
@@ -45,6 +44,7 @@ public class BorrowerService implements UserDetailsService {
 
     public Borrower findBorrowerById(Long userId){
         Optional<Borrower> borrowerFromDb = borrowerRepository.findById(userId);
+
         return  borrowerFromDb.orElse(new Borrower());
     }
 
@@ -54,7 +54,6 @@ public class BorrowerService implements UserDetailsService {
 
     public boolean saveBorrower(Borrower borrower){
         Borrower borrowerFromDb = borrowerRepository.findByUsername(borrower.getUsername());
-
 
         if (borrowerFromDb != null){
             return false;
@@ -68,7 +67,7 @@ public class BorrowerService implements UserDetailsService {
         if (!StringUtils.isEmpty(borrower.getUsername())){
             String message = String.format(
                     "Здравствуйте!\n" +
-                            "Приветствуем Вас в Vabank! Пожалуйста, перейдите по ссылке, для подтверждения вашего почтового ящика: https://localhost:8080/activate/%s",
+                            "Приветствуем Вас в Vabank! Пожалуйста, перейдите по ссылке, для подтверждения вашего почтового ящика: http://localhost:8080/activate/%s",
                     borrower.getActivationCode()
             );
            mailSender.send(borrower.getUsername(), "Код активации", message);

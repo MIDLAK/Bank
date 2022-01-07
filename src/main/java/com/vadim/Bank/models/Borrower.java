@@ -1,7 +1,7 @@
 package com.vadim.Bank.models;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
@@ -42,11 +42,9 @@ public class Borrower implements UserDetails {
         this.firstName = firstName;
         this.surname = surname;
         this.age = age;
-
         creditIssueDate = new GregorianCalendar();
         this.creditSize = creditSize;
         this.creditPercent = creditPercent;
-
     }
 
     public Borrower(String name, String firstName, String surname, int age, double creditSize, double creditPercent, int term) {
@@ -54,7 +52,6 @@ public class Borrower implements UserDetails {
         this.firstName = firstName;
         this.surname = surname;
         this.age = age;
-
         creditIssueDate = new GregorianCalendar();
         this.creditSize = creditSize;
         this.creditPercent = creditPercent;

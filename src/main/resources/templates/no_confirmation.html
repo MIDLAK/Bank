@@ -9,15 +9,8 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-<div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">
-        <h1 th:text="'' + ${heading} + '!'"></h1>
-    </h1>
-    <div class="col-lg-6 mx-auto">
-        <p th:text="'Приветствуем Вас на главной странице проекта ' + ${namePr} + '!'"/>
-    </div>
-</div>
-<div th:insert="blocks/footer :: footer"></div>
-<div th:insert="blocks/navbar :: navbar"></div>
+<div class="container mt-5 mb-5">
+    <h2>Вы не можете брать кредиты и пользоваться личным кабинетом, пока не подтвердите свой адрес электронной почты.
+        Перейдите в свой почтовый ящик и перейдите по соответствующей ссылке.</h2><br>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package com.vadim.Bank.models;
 
 public class Payment {
-
     String date;
     double pay;
     double repaymentPercent; //в погашение процентов
@@ -15,7 +14,6 @@ public class Payment {
         this.amortization = amortization;
         this.loanBalance = loanBalance;
     }
-
 
     public String getDate() {
         return date;

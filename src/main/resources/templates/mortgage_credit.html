@@ -11,12 +11,13 @@
 
 <div class="container mt-5 mb-5">
     <h2>Заполните все поля</h2><br>
-    <form th:action="@{/consumer-credit}" method="post">
+    <form th:action="@{/mortgage-credit}" method="post">
         <div th:insert="blocks/name_and_age :: nameAndAge"></div>
-        <input type="number" step="0.01" name="credit_size" min="100000" max="2000000"
-               placeholder="Укажите размер кредита в рублях (100000 - 1800000 руб.)" class="form-control" required><br>
-        <input type="number" name="credit_term" min="1" max="36"
-               placeholder="Укажите срок кредитования в месяцах (не более 36)" class="form-control" required><br>
+        <input type="number" step="0.01" name="credit_size" min="5000000" max="15000000"
+               placeholder="Укажите размер кредита в рублях (5000000 - 15000000 руб.)" class="form-control"
+               required><br>
+        <input type="number" name="credit_term" min="1" max="84"
+               placeholder="Укажите срок кредитования в месяцах (не более 84)" class="form-control" required><br>
         <button type="submit" class="btn btn-success">Подтвердить</button>
     </form>
 </div>

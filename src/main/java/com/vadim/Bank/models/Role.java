@@ -1,4 +1,5 @@
 package com.vadim.Bank.models;
+
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
@@ -6,7 +7,6 @@ import java.util.Set;
 @Entity
 @Table(name = "t_role")
 public class Role implements GrantedAuthority {
-
     @Id
     private Long id;
     private String name;

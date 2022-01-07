@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class CreditCalculator {
-
     double sum;
     int term; //срок кредитования в месяцах
     double percent; //ставка (в процентах)
@@ -28,8 +27,8 @@ public class CreditCalculator {
     }
 
     public ArrayList<Payment> annuityPaymentsTable() {
-
         ArrayList<Payment> payments = new ArrayList<Payment>(); //список платежей
+
         if (sum > 0) {
             double r = percent / 1200.0; //процентная ставка за один период
             double ak = (r * Math.pow((1 + r), term)) / (Math.pow((1 + r), term) - 1);
@@ -87,6 +86,7 @@ public class CreditCalculator {
             }
             this.overpayment = CreditCalculator.round(overpayment, 2);
         }
+
         return payments;
     }
 
@@ -96,7 +96,21 @@ public class CreditCalculator {
 
         BigDecimal bd = new BigDecimal(Double.toString(value));
         bd = bd.setScale(places, RoundingMode.HALF_UP);
+
         return bd.doubleValue();
+    }
+
+    public  static boolean doubleCompare(double one, double two){
+        BigDecimal bd1 = new BigDecimal(Double.toString(one));
+        BigDecimal bd2 = new BigDecimal(Double.toString(two));
+
+        int rez = bd1.compareTo(bd2);
+
+        if (rez >= 0){
+            return true;
+        }
+
+        return false;
     }
 
     public double getSum() {
