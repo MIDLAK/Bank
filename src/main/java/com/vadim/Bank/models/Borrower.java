@@ -21,9 +21,12 @@ public class Borrower implements UserDetails {
     int age;
     private Calendar creditIssueDate; // дата выдачи кредита
     private double creditSize; // размер кредита в рублях
+
+    private double fullCost; // полная стоимость кредита
     private double creditPercent; // процентная ставка
     private int term; // срок кредитования в месяцах
     private double bankAccount; // сумма на счету клиента в банке
+    private int numberPayments; // кол-во сделанных клиентом выплат
     private String activationCode; // код подтверждения с email
 
     @Size(min = 2, message = "Не меньше 5 знаков")
@@ -59,149 +62,87 @@ public class Borrower implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() { return getRoles(); }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
     @Override
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+    public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    public boolean isAccountNonLocked() { return true; }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+    public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    public boolean isEnabled() { return true; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
+    public String getPasswordConfirm() { return passwordConfirm; }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    public Set<Role> getRoles() { return roles; }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() { return age; }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setAge(int age) { this.age = age; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() { return firstName; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getSurname() {
-        return surname;
-    }
+    public String getSurname() { return surname; }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    public void setSurname(String surname) { this.surname = surname; }
 
-    public Calendar getCreditIssueDate() {
-        return creditIssueDate;
-    }
+    public Calendar getCreditIssueDate() { return creditIssueDate; }
 
-    public void setCreditIssueDate(Calendar creditIssueDate) {
-        this.creditIssueDate = creditIssueDate;
-    }
+    public void setCreditIssueDate(Calendar creditIssueDate) { this.creditIssueDate = creditIssueDate; }
 
-    public double getCreditSize() {
-        return creditSize;
-    }
+    public double getCreditSize() { return creditSize; }
 
-    public void setCreditSize(double creditSize) {
-        this.creditSize = creditSize;
-    }
+    public void setCreditSize(double creditSize) { this.creditSize = creditSize; }
 
-    public double getCreditPercent() {
-        return creditPercent;
-    }
+    public double getCreditPercent() { return creditPercent; }
 
-    public void setCreditPercent(double creditPercent) {
-        this.creditPercent = creditPercent;
-    }
+    public void setCreditPercent(double creditPercent) { this.creditPercent = creditPercent; }
 
-    public int getTerm() {
-        return term;
-    }
+    public int getTerm() { return term; }
 
-    public void setTerm(int term) {
-        this.term = term;
-    }
+    public void setTerm(int term) { this.term = term; }
 
-    public String getActivationCode() {
-        return activationCode;
-    }
+    public String getActivationCode() { return activationCode; }
 
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
+    public void setActivationCode(String activationCode) { this.activationCode = activationCode; }
 
-    public double getBankAccount() {
-        return bankAccount;
-    }
+    public double getBankAccount() { return bankAccount; }
 
-    public void setBankAccount(double bankAccount) {
-        this.bankAccount = bankAccount;
-    }
+    public void setBankAccount(double bankAccount) { this.bankAccount = bankAccount; }
+
+    public double getFullCost() { return fullCost; }
+
+    public void setFullCost(double fullCost) { this.fullCost = fullCost; }
+
+    public int getNumberPayments() { return numberPayments; }
+
+    public void setNumberPayments(int numberPayments) { this.numberPayments = numberPayments; }
 }

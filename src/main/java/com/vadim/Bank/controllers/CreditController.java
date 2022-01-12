@@ -2,6 +2,7 @@ package com.vadim.Bank.controllers;
 
 import com.vadim.Bank.models.Borrower;
 import com.vadim.Bank.models.BorrowerRepository;
+import com.vadim.Bank.models.CreditCalculator;
 import com.vadim.Bank.service.BorrowerService;
 import com.vadim.Bank.service.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.GregorianCalendar;
 
 @Controller
@@ -66,6 +68,8 @@ public class CreditController {
             borrower.setSurname(surname);
             borrower.setTerm((int) term);
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
+            CreditCalculator creditCalculator = new CreditCalculator(borrower);
+            borrower.setFullCost(creditCalculator.getFullCost());
 
             borrowerRepository.save(borrower);
 
@@ -120,6 +124,8 @@ public class CreditController {
             borrower.setSurname(surname);
             borrower.setTerm((int) term);
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
+            CreditCalculator creditCalculator = new CreditCalculator(borrower);
+            borrower.setFullCost(creditCalculator.getFullCost());
 
             borrowerRepository.save(borrower);
 
@@ -174,6 +180,8 @@ public class CreditController {
             borrower.setSurname(surname);
             borrower.setTerm((int) term);
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
+            CreditCalculator creditCalculator = new CreditCalculator(borrower);
+            borrower.setFullCost(creditCalculator.getFullCost());
 
             borrowerRepository.save(borrower);
 
@@ -228,6 +236,8 @@ public class CreditController {
             borrower.setSurname(surname);
             borrower.setTerm((int) term);
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
+            CreditCalculator creditCalculator = new CreditCalculator(borrower);
+            borrower.setFullCost(creditCalculator.getFullCost());
 
             borrowerRepository.save(borrower);
 
