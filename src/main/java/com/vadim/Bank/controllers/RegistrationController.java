@@ -23,7 +23,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("username") String username, @ModelAttribute("password") String password/*, BindingResult bindingResult*/, Model model) {
+    public String addUser(@ModelAttribute("username") String username,
+                          @ModelAttribute("password") String password, Model model) {
         Borrower borrower = new Borrower();
         borrower.setPassword(password);
         borrower.setUsername(username);

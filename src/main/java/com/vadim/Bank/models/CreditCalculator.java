@@ -39,14 +39,13 @@ public class CreditCalculator {
             issueDate.set(Calendar.DAY_OF_MONTH, 15);
         }
 
-        if (sum > 0) {
+        if (sum > 0 && term > 0 && percent > 0) {
             double r = percent / 1200.0; //процентная ставка за один период
             double ak = (r * Math.pow((1 + r), term)) / (Math.pow((1 + r), term) - 1);
             double monthlyPayment = sum * ak;
             double total = CreditCalculator.round(monthlyPayment * term, 2); //общая сумма выплаты (итого)
             double overpayment = total - sum; //переплата
             this.overpayment = CreditCalculator.round(overpayment, 2);
-            ;
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");  //пример вывода 16.10.2021
 
@@ -63,6 +62,8 @@ public class CreditCalculator {
                         CreditCalculator.round(s, 2));
                 payments.add(payment);
             }
+        } else {
+            throw new IllegalArgumentException();
         }
 
         return payments;
@@ -71,7 +72,7 @@ public class CreditCalculator {
     public ArrayList<Payment> differentiatedPayments() {
         ArrayList<Payment> payments = new ArrayList<Payment>();
 
-        if (sum > 0) {
+        if (sum > 0 && term > 0 && percent > 0) {
             double r = percent / 1200.0; //процентная ставка за один период
             double rest = sum; //остаток долга по кредиту
             double mpReal = sum / term;
@@ -102,6 +103,8 @@ public class CreditCalculator {
                 t--;
             }
             this.overpayment = CreditCalculator.round(overpayment, 2);
+        } else {
+            throw new IllegalArgumentException();
         }
 
         return payments;
@@ -121,13 +124,7 @@ public class CreditCalculator {
         BigDecimal bd1 = new BigDecimal(Double.toString(one));
         BigDecimal bd2 = new BigDecimal(Double.toString(two));
 
-        int rez = bd1.compareTo(bd2);
-
-        if (rez >= 0) {
-            return true;
-        }
-
-        return false;
+        return bd1.compareTo(bd2) == 0;
     }
 
     /*возвращает полную стоимость кредита (тело + проценты)*/

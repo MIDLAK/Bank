@@ -21,13 +21,13 @@ public class Borrower implements UserDetails {
     int age;
     private Calendar creditIssueDate; // дата выдачи кредита
     private double creditSize; // размер кредита в рублях
-
     private double fullCost; // полная стоимость кредита
     private double creditPercent; // процентная ставка
     private int term; // срок кредитования в месяцах
     private double bankAccount; // сумма на счету клиента в банке
     private int numberPayments; // кол-во сделанных клиентом выплат
     private String activationCode; // код подтверждения с email
+    private String payoutStrategy; // стратегия платежей (ann - аннуитетные, diff - дифференцированные)
 
     @Size(min = 2, message = "Не меньше 5 знаков")
     private String password;
@@ -40,7 +40,8 @@ public class Borrower implements UserDetails {
 
     public Borrower(){}
 
-    public Borrower(String name, String firstName, String surname, int age, double creditSize, double creditPercent) {
+    public Borrower(String name, String firstName, String surname, int age,
+                    double creditSize, double creditPercent) {
         this.name = name;
         this.firstName = firstName;
         this.surname = surname;
@@ -50,7 +51,8 @@ public class Borrower implements UserDetails {
         this.creditPercent = creditPercent;
     }
 
-    public Borrower(String name, String firstName, String surname, int age, double creditSize, double creditPercent, int term) {
+    public Borrower(String name, String firstName, String surname, int age, double creditSize,
+                    double creditPercent, int term) {
         this.name = name;
         this.firstName = firstName;
         this.surname = surname;
@@ -145,4 +147,8 @@ public class Borrower implements UserDetails {
     public int getNumberPayments() { return numberPayments; }
 
     public void setNumberPayments(int numberPayments) { this.numberPayments = numberPayments; }
+
+    public String getPayoutStrategy() { return payoutStrategy; }
+
+    public void setPayoutStrategy(String payoutStrategy) { this.payoutStrategy = payoutStrategy; }
 }

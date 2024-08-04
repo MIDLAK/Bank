@@ -14,7 +14,7 @@
     <form th:action="@{/refill}" method="post">
         <h4>ПОПОЛНИТЬ СЧЁТ</h4>
         <br>
-        <input type="number" step="0.01" min="1" max="500000" name="transfer_amount" placeholder="Сумма пополнения"
+        <input type="number" step="0.01" min="0.01" max="500000" name="transfer_amount" placeholder="Сумма пополнения"
                class="form-control"><br>
         <button type="submit" class="btn btn-success">Пополнить</button>
     </form>
@@ -24,7 +24,7 @@
     <form th:action="@{/withdraw}" method="post">
         <h4>СНЯТЬ СО СЧЁТА</h4>
         <br>
-        <input type="number" step="0.01" min="1" max="500000" name="transfer_amount" placeholder="Сумма снятия"
+        <input type="number" step="0.01" min="0.01" max="500000" name="transfer_amount" placeholder="Сумма снятия"
                class="form-control"><br>
         <button type="submit" class="btn btn-success">Снять</button>
     </form>
@@ -44,8 +44,8 @@
         <tr>
             <th>Дата</th>
             <th>Платёж</th>
-            <th>В погашение процентов</th>
-            <th>В погашение долга</th>
+            <th>Оплата процентов</th>
+            <th>Основной долг</th>
             <th>Остаток</th>
         </tr>
         <tr th:each="pay : ${paytable}">

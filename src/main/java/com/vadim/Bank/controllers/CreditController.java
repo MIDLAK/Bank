@@ -49,7 +49,10 @@ public class CreditController {
     @PostMapping("/consumer-credit")
     public String consumerAdd(@ModelAttribute("firstname") String firstname, @ModelAttribute("name") String name,
                               @ModelAttribute("surname") String surname, @ModelAttribute("age") double age,
-                              @ModelAttribute("credit_size") double creditSize, @ModelAttribute("credit_term") double term, Model model) {
+                              @ModelAttribute("credit_size") double creditSize,
+                              @ModelAttribute("credit_term") double term,
+                              @ModelAttribute("repayment_procedure") String procedure,
+                              Model model) {
 
         model.addAttribute("title", "Главная страница");
         model.addAttribute("namePr", "Vabank");
@@ -70,6 +73,7 @@ public class CreditController {
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
             CreditCalculator creditCalculator = new CreditCalculator(borrower);
             borrower.setFullCost(creditCalculator.getFullCost());
+            borrower.setPayoutStrategy(procedure);
 
             borrowerRepository.save(borrower);
 
@@ -105,7 +109,10 @@ public class CreditController {
     @PostMapping("/mortgage-credit")
     public String mortgage(@ModelAttribute("firstname") String firstname, @ModelAttribute("name") String name,
                            @ModelAttribute("surname") String surname, @ModelAttribute("age") double age,
-                           @ModelAttribute("credit_size") double creditSize, @ModelAttribute("credit_term") double term, Model model){
+                           @ModelAttribute("credit_size") double creditSize,
+                           @ModelAttribute("credit_term") double term,
+                           @ModelAttribute("repayment_procedure") String procedure,
+                           Model model){
 
         model.addAttribute("title", "Главная страница");
         model.addAttribute("namePr", "Vabank");
@@ -126,6 +133,7 @@ public class CreditController {
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
             CreditCalculator creditCalculator = new CreditCalculator(borrower);
             borrower.setFullCost(creditCalculator.getFullCost());
+            borrower.setPayoutStrategy(procedure);
 
             borrowerRepository.save(borrower);
 
@@ -161,7 +169,10 @@ public class CreditController {
     @PostMapping("/car-credit")
     public String car(@ModelAttribute("firstname") String firstname, @ModelAttribute("name") String name,
                       @ModelAttribute("surname") String surname, @ModelAttribute("age") double age,
-                      @ModelAttribute("credit_size") double creditSize, @ModelAttribute("credit_term") double term, Model model){
+                      @ModelAttribute("credit_size") double creditSize,
+                      @ModelAttribute("credit_term") double term,
+                      @ModelAttribute("repayment_procedure") String procedure,
+                      Model model){
 
         model.addAttribute("title", "Главная страница");
         model.addAttribute("namePr", "Vabank");
@@ -182,6 +193,7 @@ public class CreditController {
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
             CreditCalculator creditCalculator = new CreditCalculator(borrower);
             borrower.setFullCost(creditCalculator.getFullCost());
+            borrower.setPayoutStrategy(procedure);
 
             borrowerRepository.save(borrower);
 
@@ -217,7 +229,10 @@ public class CreditController {
     @PostMapping("/student-credit")
     public String student(@ModelAttribute("firstname") String firstname, @ModelAttribute("name") String name,
                           @ModelAttribute("surname") String surname, @ModelAttribute("age") double age,
-                          @ModelAttribute("credit_size") double creditSize, @ModelAttribute("credit_term") double term, Model model){
+                          @ModelAttribute("credit_size") double creditSize,
+                          @ModelAttribute("credit_term") double term,
+                          @ModelAttribute("repayment_procedure") String procedure,
+                          Model model){
 
         model.addAttribute("title", "Главная страница");
         model.addAttribute("namePr", "Vabank");
@@ -238,6 +253,7 @@ public class CreditController {
             borrower.setBankAccount(borrower.getBankAccount() + creditSize);
             CreditCalculator creditCalculator = new CreditCalculator(borrower);
             borrower.setFullCost(creditCalculator.getFullCost());
+            borrower.setPayoutStrategy(procedure);
 
             borrowerRepository.save(borrower);
 

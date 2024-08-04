@@ -41,9 +41,15 @@ public class PersonalAreaController {
         }
 
         CreditCalculator creditCalculator = new CreditCalculator(borrower.getCreditSize(), borrower.getTerm(), borrower.getCreditPercent(), borrower.getCreditIssueDate());
-        ArrayList<Payment> paytable;
-        //paytable = creditCalculator.annuityPaymentsTable(); //график платежей (аннуитет)
-        paytable = creditCalculator.differentiatedPayments(); //график платежей (дифференцированный)
+        ArrayList<Payment> paytable = null;
+        if (borrower.getCreditSize() > 0) {
+            if (borrower.getPayoutStrategy().equals("ann")) {
+                paytable = creditCalculator.annuityPaymentsTable(); //график платежей (аннуитет)
+            } else if(borrower.getPayoutStrategy().equals("diff")) {
+                paytable = creditCalculator.differentiatedPayments(); //график платежей (дифференцированный)
+            }
+        }
+
         double overpayment = creditCalculator.getOverpayment();
         model.addAttribute("paytable", paytable);
         model.addAttribute("borrower", borrower);
@@ -61,7 +67,7 @@ public class PersonalAreaController {
         Borrower borrower = (Borrower) borrowerService.loadUserByUsername(username);
 
         if (borrower != null){
-            double total = transferAmount + borrower.getBankAccount();
+            double total = CreditCalculator.round(transferAmount + borrower.getBankAccount(), 2);
             borrower.setBankAccount(total);
             borrowerRepository.save(borrower);
 
@@ -81,7 +87,7 @@ public class PersonalAreaController {
         Borrower borrower = (Borrower) borrowerService.loadUserByUsername(username);
 
         if (borrower != null && CreditCalculator.doubleCompare(borrower.getBankAccount(), transferAmount)){
-            borrower.setBankAccount(borrower.getBankAccount() - transferAmount);
+            borrower.setBankAccount(CreditCalculator.round(borrower.getBankAccount() - transferAmount,2));
             borrowerRepository.save(borrower);
 
             mailSender.send(borrower.getUsername(), "Снятие со счёта", "Здравствуйте! С Вашего счёта в банке \"Vabank\" было снято " + transferAmount + " рублей.\n" +
@@ -90,6 +96,4 @@ public class PersonalAreaController {
 
         return "redirect:/personal-area";
     }
-
-
 }
